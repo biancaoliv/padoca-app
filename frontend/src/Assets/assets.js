@@ -118,56 +118,56 @@ export const menu_list = [
 
 export const food_list = [
     {
-        id: "1",
+        _id: "1",
         name: "Baguette",
         image: food_5,
         price: 14,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Handmade"
     }, {
-        id: "2",
+        _id: "2",
         name: "Stuffed Baguette",
         image: food_6,
         price: 12,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Handmade"
     }, {
-        id: "3",
+        _id: "3",
         name: "Bread with Cheese",
         image: food_7,
         price: 20,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Handmade"
     }, {
-        id: "4",
+        _id: "4",
         name: "Bread",
         image: food_8,
         price: 15,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Handmade"
     }, {
-        id: "9",
+        _id: "9",
         name: "Cinnamon Rolls",
         image: food_9,
         price: 14,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Sweets"
     }, {
-        id: "10",
+        _id:"10",
         name: "Stuffed Roll",
         image: food_10,
         price: 22,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Sweets"
     }, {
-        id: "11",
+        _id: "11",
         name: "Muffin",
         image: food_11,
         price: 10,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Sweets"
     }, {
-        id: "12",
+        _id: "12",
         name: "Strawberry pudding",
         image: food_12,
         price: 12,
@@ -175,7 +175,7 @@ export const food_list = [
         category: "Sweets"
     },
     {
-        id: "13",
+        _id: "13",
         name: "Tiramisu cake",
         image: food_13,
         price: 12,
@@ -183,77 +183,77 @@ export const food_list = [
         category: "Cakes"
     },
     {
-        id: "14",
+        _id: "14",
         name: "Fruit cake",
         image: food_14,
         price: 18,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Cakes"
     }, {
-        id: "15",
+        _id: "15",
         name: "Charlotte Cake",
         image: food_15,
         price: 16,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Cakes"
     }, {
-        id: "16",
+        _id: "16",
         name: "Date cake",
         image: food_16,
         price: 24,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Cakes"
     }, {
-        id: "17",
+        _id: "17",
         name: "Cappuccino",
         image: food_17,
         price: 14,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Drinks"
     }, {
-        id: "18",
+        _id: "18",
         name: "Coffee",
         image: food_18,
         price: 12,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Drinks"
     }, {
-        id: "19",
+        _id: "19",
         name: "Lemon Syrup",
         image: food_19,
         price: 20,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Drinks"
     }, {
-        id: "20",
+        _id: "20",
         name: "Tea",
         image: food_20,
         price: 15,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Drinks"
     }, {
-        id: "21",
+        _id: "21",
         name: "Pepper Stuffed Bread",
         image: food_21,
         price: 14,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Specialties"
     }, {
-        id: "22",
+        _id: "22",
         name: "Bread with Egg",
         image: food_22,
         price: 22,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Specialties"
     }, {
-        id: "23",
+        _id: "23",
         name: "hamburger Bun",
         image: food_23,
         price: 10,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Specialties"
     }, {
-        id: "24",
+        _id: "24",
         name: "Fondue",
         image: food_24,
         price: 12,
@@ -261,7 +261,7 @@ export const food_list = [
         category: "Specialties"
     },
     {
-        id: "25",
+        _id: "25",
         name: "Avocado Sandwich",
         image: food_25,
         price: 12,
@@ -269,56 +269,56 @@ export const food_list = [
         category: "Pure Veg"
     },
     {
-        id: "26",
+        _id: "26",
         name: "Spinach Sandwich",
         image: food_26,
         price: 18,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Pure Veg"
     }, {
-        id: "27",
+        _id: "27",
         name: "Salad",
         image: food_27,
         price: 16,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Pure Veg"
     }, {
-        id: "28",
+        _id: "28",
         name: "Vegetable Mix",
         image: food_28,
         price: 24,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Pure Veg"
     }, {
-        id: "29",
+        _id: "29",
         name: "truffles",
         image: food_29,
         price: 14,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Kits"
     }, {
-        id: "30",
+        _id: "30",
         name: "French Bread",
         image: food_30,
         price: 12,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Kits"
     }, {
-        id: "31",
+        _id: "31",
         name: "Bagel",
         image: food_31,
         price: 20,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Kits"
     }, {
-        id: "32",
+        _id: "32",
         name: "Assorted Breads",
         image: food_32,
         price: 15,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Kits"
     },{
-        id: "5",
+        _id: "5",
         name: "Greek salad",
         image: food_1,
         price: 12,
@@ -326,21 +326,21 @@ export const food_list = [
         category: "Healthy"
     },
     {
-        id: "6",
+        _id: "6",
         name: "Veg salad",
         image: food_2,
         price: 18,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Healthy"
     }, {
-        id: "7",
+        _id: "7",
         name: "Clover Salad",
         image: food_3,
         price: 16,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Healthy"
     }, {
-        id: "8",
+        _id: "8",
         name: "Chicken Salad",
         image: food_4,
         price: 24,
