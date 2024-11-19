@@ -1,5 +1,6 @@
 import React from "react";
 import "./Header.css";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -12,7 +13,7 @@ const Header = () => {
           dedication. Our mission is to satisfy your cravings and elevate your
           experience with each delicious bite, one warm roll at a time.
         </p>
-        <button>View Menu</button>
+        <button onClick={() => window.location.href = "#explore-menu"}>View Menu</button>
       </div>
     </div>
   );

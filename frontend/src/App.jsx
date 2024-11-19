@@ -8,6 +8,7 @@ import Footer from "./Components/Footer/Footer";
 import LoginPopup from "./Components/LoginPopup/LoginPopup";
 import Verify from "./Pages/Verify/Verify";
 import MyOrders from "./Pages/MyOrders/MyOrders";
+
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
 

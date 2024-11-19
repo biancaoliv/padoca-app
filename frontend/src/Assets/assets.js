@@ -247,7 +247,7 @@ export const food_list = [
         category: "Specialties"
     }, {
         _id: "23",
-        name: "hamburger Bun",
+        name: "Hamburger Bun",
         image: food_23,
         price: 10,
         description: "Food provides essential nutrients for overall health and well-being",
@@ -291,7 +291,7 @@ export const food_list = [
         category: "Pure Veg"
     }, {
         _id: "29",
-        name: "truffles",
+        name: "Truffles",
         image: food_29,
         price: 14,
         description: "Food provides essential nutrients for overall health and well-being",
