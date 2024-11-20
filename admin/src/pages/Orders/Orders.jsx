@@ -14,7 +14,7 @@ const Orders = ({ url }) => {
       setOrders(response.data.data);
       console.log(response.data.data);
     } else {
-      toast.error("Error");
+      toast.error("Failed to fetch orders.");
     }
   };
 

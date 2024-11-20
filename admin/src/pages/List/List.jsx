@@ -11,7 +11,7 @@ const List = ({url}) => {
     if (response.data.success) {
       setList(response.data.data);
     } else {
-      toast.error("Error");
+      toast.error("Failed to fetch food list.");
     }
   };
 
@@ -21,7 +21,7 @@ const List = ({url}) => {
     if (response.data.success) {
       toast.success(response.data.message);
     } else {
-      toast.error("Error");
+      toast.error("Failed to remove food item.");
     }
   };
 

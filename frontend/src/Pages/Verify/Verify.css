@@ -18,3 +18,9 @@
         transform: rotate(360deg);
     }
 }
+
+.error-message {
+    color: rgb(250, 59, 59);;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+  }
