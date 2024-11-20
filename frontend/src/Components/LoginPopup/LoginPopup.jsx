@@ -14,14 +14,38 @@ const LoginPopup = ({ setShowLogin }) => {
     password: "",
   });
 
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setData((data) => ({ ...data, [name]: value }));
+    setData((prevData) => ({ ...prevData, [name]: value }));
+    setError("");
+  };
+
+  const validateForm = () => {
+    if (!data.email || !data.password) {
+      setError("All fields required");
+      return false;
+    }
+    if (currState === "Sign Up" && !data.name) {
+      setError("Enter your name.");
+      return false;
+    }
+    return true;
   };
 
   const onLogin = async (event) => {
     event.preventDefault();
+
+    setError(""); 
+    
+    if (!validateForm()) return;
+
+    setLoading(true);
+   
+
     let newUrl = url;
     if (currState === "Login") {
       newUrl += "/api/user/login";
@@ -29,14 +53,21 @@ const LoginPopup = ({ setShowLogin }) => {
       newUrl += "/api/user/register";
     }
 
-    const response = await axios.post(newUrl, data);
-    if (response.data.success) {
-      setToken(response.data.token);
-      localStorage.setItem("token", response.data.token);
-      setShowLogin(false)
-    }
-    else{
-      alert(response.data.message)
+    try {
+      const response = await axios.post(newUrl, data);
+      if (response.data.success) {
+        setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        setShowLogin(false);
+      } else {
+        setError(response.data.message);
+      }
+    } catch (err) {
+      setError("Incorrect email or password.");
+      console.error(err);
+    } finally {
+      setLoading(false);
+      
     }
   };
 
@@ -48,13 +79,18 @@ const LoginPopup = ({ setShowLogin }) => {
           <img
             onClick={() => setShowLogin(false)}
             src={assets.cross_icon}
-            alt=""
+            alt="Fechar"
           />
         </div>
+
+        {error && (
+          <div className="login-popup-error" aria-live="assertive">
+            {error}
+          </div>
+        )}
+
         <div className="login-popup-inputs">
-          {currState === "Login" ? (
-            <></>
-          ) : (
+          {currState === "Sign Up" && (
             <input
               name="name"
               onChange={onChangeHandler}
@@ -77,35 +113,34 @@ const LoginPopup = ({ setShowLogin }) => {
             onChange={onChangeHandler}
             value={data.password}
             type="password"
-            placeholder="Password"
+            placeholder="password"
             required
           />
-        
         </div>
-        <button type="submit">
-          {currState === "Sign Up" ? "Create account" : "Login"}
+
+        <button type="submit" disabled={loading}>
+          {loading ? "Wait..." : currState === "Sign Up" ? "Create account" : "Login"}
         </button>
-        
+
         <div className="login-popup-condition">
-          
           <input type="checkbox" required />
-          <p>By continuing, I agree to the terms of use & privacy policy.</p>
+          <p>
+          By continuing, I agree to the terms of use and privacy policy.
+          </p>
         </div>
+
         {currState === "Login" ? (
           <p>
-            Create a new account?{" "}
-            <span onClick={() => setCurrState("Sign Up")}>Click here</span>
+            Don't have an account?{" "}
+            <span onClick={() => setCurrState("Sign Up")}>Create here</span>
           </p>
-          
         ) : (
           <p>
             Already have an account?{" "}
-            <span onClick={() => setCurrState("Login")}>Login Here</span>
+            <span onClick={() => setCurrState("Login")}>Login here</span>
           </p>
-          
         )}
       </form>
-      
     </div>
   );
 };

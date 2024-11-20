@@ -4,11 +4,12 @@ import axios from "axios";
 import { StoreContext } from "../../context/StoreContext";
 
 const Verify = () => {
-  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const success = searchParams.get("success");
   const orderId = searchParams.get("orderId");
   const { url } = useContext(StoreContext);
+  const navigate = useNavigate();
+
 
   const verifyPayment = async () => {
     const response = await axios.post(url + "/api/order/verify", {

@@ -72,3 +72,13 @@
     font-weight: 500;
     cursor: pointer;
 }
+
+.login-popup-error {
+  color: rgb(250, 59, 59);
+  background-color: #ffe6e6;
+  border: 1px solid rgb(250, 59, 59);
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
