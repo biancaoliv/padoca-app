@@ -1,47 +1,71 @@
 import foodModel from "../models/foodModel.js";
 import fs from "fs";
 
-// add food item
-
 const addFood = async (req, res) => {
   let image_filename = `${req.file.filename}`;
 
-  const food = new foodModel({
-    name: req.body.name,
-    description: req.body.description,
-    price: req.body.price,
-    category: req.body.category,
-    image: image_filename,
-  });
   try {
+    const food = new foodModel({
+      name: req.body.name,
+      description: req.body.description,
+      price: req.body.price,
+      category: req.body.category,
+      image: image_filename,
+    });
+
     await food.save();
-    res.json({ success: true, message: "Food Added" });
+    res.status(201).json({ success: true, message: "Food Added" });
   } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: "Error" });
+    console.error("Error adding food item:", error);
+    res.status(500).json({
+      success: false,
+      message: "An error occurred while adding the food item. Please try again later.",
+    });
   }
 };
 
 const listFood = async (req, res) => {
   try {
     const foods = await foodModel.find({});
-    res.json({ success: true, data: foods });
+    res.status(200).json({ success: true, data: foods });
   } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: "Error" });
+    console.error("Error fetching food items:", error);
+    res.status(500).json({
+      success: false,
+      message: "An error occurred while fetching food items. Please try again later.",
+    });
   }
 };
 
 const removeFood = async (req, res) => {
   try {
     const food = await foodModel.findById(req.body.id);
-    fs.unlink(`uploads/${food.image}`, () => {});
+    
+    if (!food) {
+      return res.status(404).json({
+        success: false,
+        message: "Food item not found.",
+      });
+    }
+
+    fs.unlink(`uploads/${food.image}`, (err) => {
+      if (err) {
+        console.error("Error deleting image file:", err);
+        return res.status(500).json({
+          success: false,
+          message: "Error deleting the image file. Please try again later.",
+        });
+      }
+    });
 
     await foodModel.findByIdAndDelete(req.body.id);
-    res.json({success: true, message: "Food Removed"})
+    res.status(200).json({ success: true, message: "Food Removed" });
   } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: "Error" });
+    console.error("Error removing food item:", error);
+    res.status(500).json({
+      success: false,
+      message: "An error occurred while removing the food item. Please try again later.",
+    });
   }
 };
 

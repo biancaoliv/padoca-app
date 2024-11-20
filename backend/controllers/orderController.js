@@ -45,63 +45,97 @@ const placeOrder = async (req, res) => {
       cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
     });
 
-    res.json({ success: true, session_url: session.url });
+    res.status(200).json({ success: true, session_url: session.url });
   } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: "Error" });
+    console.error("Error placing order:", error);
+    res.status(500).json({
+      success: false,
+      message:
+        "An error occurred while placing your order. Please try again later.",
+    });
   }
 };
 
 const verifyOrder = async (req, res) => {
   const { orderId, success } = req.body;
   try {
-    if (success == "true") {
+    if (success === "true") {
       await orderModel.findByIdAndUpdate(orderId, { payment: true });
-      res.json({ success: true, message: "Paid" });
+      res.status(200).json({ success: true, message: "Payment successful" });
     } else {
       await orderModel.findByIdAndDelete(orderId);
-      res.json({ success: false, message: "Not paid" });
+      res.status(400).json({ success: false, message: "Payment failed" });
     }
   } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: "Error" });
+    console.error("Error verifying order:", error);
+    res.status(500).json({
+      success: false,
+      message:
+        "An error occurred while verifying your order. Please try again later.",
+    });
   }
 };
-
-// user orders for frontend
 
 const userOrders = async (req, res) => {
   try {
     const orders = await orderModel.find({ userId: req.body.userId });
-    res.json({ success: true, data: orders });
+    if (!orders.length) {
+      return res.status(404).json({
+        success: false,
+        message: "No orders found for this user.",
+      });
+    }
+    res.status(200).json({ success: true, data: orders });
   } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: "Error" });
+    console.error("Error fetching user orders:", error);
+    res.status(500).json({
+      success: false,
+      message:
+        "An error occurred while fetching orders. Please try again later.",
+    });
   }
 };
 
-// listing orders for admin panel
 const listOrders = async (req, res) => {
   try {
     const orders = await orderModel.find({});
-    res.json({ success: true, data: orders });
+    res.status(200).json({ success: true, data: orders });
   } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: "Error" });
+    console.error("Error fetching orders list:", error);
+    res.status(500).json({
+      success: false,
+      message:
+        "An error occurred while fetching the orders list. Please try again later.",
+    });
   }
 };
 
-// api for updating order status
-
 const updateStatus = async (req, res) => {
   try {
-    await orderModel.findByIdAndUpdate(req.body.orderId, {
-      status: req.body.status,
-    });
-    res.json({ success: true, message: "Status Updated" });
+    const { orderId, status } = req.body;
+    const updatedOrder = await orderModel.findByIdAndUpdate(
+      orderId,
+      { status },
+      { new: true }
+    );
+
+    if (!updatedOrder) {
+      return res.status(404).json({
+        success: false,
+        message: "Order not found.",
+      });
+    }
+
+    res
+      .status(200)
+      .json({ success: true, message: "Status updated successfully" });
   } catch (error) {
-    console.lof(error);
-    res.json({ success: false, message: "Error" });
+    console.error("Error updating order status:", error);
+    res.status(500).json({
+      success: false,
+      message:
+        "An error occurred while updating the order status. Please try again later.",
+    });
   }
 };
 
