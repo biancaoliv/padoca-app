@@ -3,6 +3,12 @@ import fs from "fs";
 
 const addFood = async (req, res) => {
   let image_filename = `${req.file.filename}`;
+  if (isNaN(price) || price <= 0) {
+    return res.status(400).json({
+      success: false,
+      message: "Price must be a valid positive number.",
+    });
+  }
 
   try {
     const food = new foodModel({
@@ -19,7 +25,8 @@ const addFood = async (req, res) => {
     console.error("Error adding food item:", error);
     res.status(500).json({
       success: false,
-      message: "An error occurred while adding the food item. Please try again later.",
+      message:
+        "An error occurred while adding the food item. Please try again later.",
     });
   }
 };
@@ -32,7 +39,8 @@ const listFood = async (req, res) => {
     console.error("Error fetching food items:", error);
     res.status(500).json({
       success: false,
-      message: "An error occurred while fetching food items. Please try again later.",
+      message:
+        "An error occurred while fetching food items. Please try again later.",
     });
   }
 };
@@ -40,7 +48,7 @@ const listFood = async (req, res) => {
 const removeFood = async (req, res) => {
   try {
     const food = await foodModel.findById(req.body.id);
-    
+
     if (!food) {
       return res.status(404).json({
         success: false,
@@ -64,7 +72,8 @@ const removeFood = async (req, res) => {
     console.error("Error removing food item:", error);
     res.status(500).json({
       success: false,
-      message: "An error occurred while removing the food item. Please try again later.",
+      message:
+        "An error occurred while removing the food item. Please try again later.",
     });
   }
 };
