@@ -1,11 +1,6 @@
 import mongoose from "mongoose";
 import userModel from "../userModel";
 
-beforeEach(() => {
-  jest.clearAllMocks(); 
-});
-
-
 jest.mock("mongoose", () => {
   const actualMongoose = jest.requireActual("mongoose");
   const mockModel = {
